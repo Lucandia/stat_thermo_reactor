@@ -94,6 +94,10 @@ Start setting the parameters for each reactant and product. Do not change the ke
 
 ## Example:
 ```
+# import the functions
+
+from stat_thermo import *
+
 # set up the initial parameters
 
 data["U0"]= -1700
