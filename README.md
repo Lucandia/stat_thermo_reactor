@@ -125,5 +125,6 @@ save("reaction_data")
 
 In the python interpreter type:
 ```
+import stat_thermo
 help(stat_thermo)
 ```
