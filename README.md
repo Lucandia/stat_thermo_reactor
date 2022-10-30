@@ -1,4 +1,4 @@
-# stat_thermo_reactor
+# Statistical Thermodynamics Reactor
 A python script to calculate reaction data with Statistical Thermodynamics (ΔG, ΔS, ΔH, ΔU, reaction constant); from the lecture of Roberto Marquardt.
 
 
