@@ -21,21 +21,20 @@ def add_molecule(sign):
     o = st.text_input('o: symmetry number', help='The symmetry number a of a molecule is the order of the finite rotational sub-group of the point group of the molecule')
     if o: o = float(o)
     n_mod_raw = st.text_input('List of the vibrational mode frequencies [cm-1] separated by a comma')
-    st.write(f'{n_mod_raw}  {type(n_mod_raw)} {bool(n_mod_raw)}')
     if n_mod_raw:
         n_mod = [float(i) for i in n_mod_raw.split(',')]
-    n_deg_raw = st.text_input('List of the vibrational mode degeneracies separated by a comma').split(',')
+    n_deg_raw = st.text_input('List of the vibrational mode degeneracies separated by a comma')
     if n_deg_raw:
-        n_deg = [float(i) for i in n_deg_raw]
-    En_raw = st.text_input('List of the electron level Energies [cm-1] separated by a comma').split(',')
+        n_deg = [float(i) for i in n_deg_raw.split(',')]
+    En_raw = st.text_input('List of the electron level Energies [cm-1] separated by a comma')
     if En_raw:
-        En = [float(i) for i in En_raw]
-    gn_list_elec_raw = st.text_input('List of the electron levels degeneracies separated by a comma').split(',')
+        En = [float(i) for i in En_raw.split(',')]
+    gn_list_elec_raw = st.text_input('List of the electron levels degeneracies separated by a comma')
     if gn_list_elec_raw:
-        gn_list_elec = [float(i) for i in gn_list_elec_raw]
-    spin_list_raw = st.text_input('List of nuclear spins separated by a comma').split(',')
+        gn_list_elec = [float(i) for i in gn_list_elec_raw.split(',')]
+    spin_list_raw = st.text_input('List of nuclear spins separated by a comma')
     if spin_list_raw:
-        spin_list = [float(i) for i in spin_list_raw]
+        spin_list = [float(i) for i in spin_list_raw.split(',')]
     load = st.button('submit molecule')
     while not load:
         if load:
