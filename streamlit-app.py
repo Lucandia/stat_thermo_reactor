@@ -108,10 +108,12 @@ if __name__ == "__main__":
         spin_list = [float(i) for i in spin_list_raw.split(',')]
     load = st.button('Add Molecule')
 
-    to_compute = st.selectbox('### Compute:', ('Partition Function',
-                                               'Internal Energy',
-                                               'Entropy',
-                                               'Gibbs Free Energy and Reaction Constant'))
+    to_compute = st.selectbox('''
+    ### Compute:
+    ''', ('Partition Function',
+          'Internal Energy',
+          'Entropy',
+          'Gibbs Free Energy and Reaction Constant'))
     compute = st.button('Compute')
     if compute:
         mol_list = [mol for mol in data if mol != 'U0']
@@ -143,13 +145,16 @@ if __name__ == "__main__":
         data[name]["s_c"] = int(s_c)
         data[name]["param"] = [P, m, B, o, linear, n_mod, n_deg, gn_list_elec, En, spin_list, A, C]
 
-    save_as = st.selectbox('### Save Results as:', ('csv', 'xlsx'))
+    save_as = st.selectbox('''
+    ### Save Results as:
+    ''', ('csv', 'xlsx'))
     filename = 'stat_thermo_results.' + save_as
-    with open(os.getcwd() + os.sep + filename, "rb") as file:
-        btn = st.download_button(label="Download Results Table",
-                                 data=file,
-                                 file_name=filename,
-                                 mime="image/png")
+    if filename in os.listdir():
+        with open(filename, "rb") as file:
+            btn = st.download_button(label="Download Results Table",
+                                     data=file,
+                                     file_name=filename,
+                                     mime="image/png")
 
     mol_list = [mol for mol in data if mol != 'U0']
     del_mol = st.selectbox('Delete the molecule:', mol_list)
