@@ -36,11 +36,13 @@ def add_molecule(sign):
     if spin_list_raw:
         spin_list = [float(i) for i in spin_list_raw.split(',')]
     load = st.button('submit molecule')
-    while not load:
-        if load:
-            data[name] = dict()
-            data[name]["s_c"] = s_c
-            data[name]["param"] = [P, m, B, o, linear, n_mod, n_deg, gn_list_elec, En, spin_list, A, C]
+    if not load:
+        st.stop()
+    else:
+        data[name] = dict()
+        data[name]["s_c"] = s_c
+        data[name]["param"] = [P, m, B, o, linear, n_mod, n_deg, gn_list_elec, En, spin_list, A, C]
+        return
 
 
 
