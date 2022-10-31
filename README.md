@@ -24,8 +24,8 @@ added to the pythonpath
 - linear: the molecule is linear ('True'), not linear ('False'), or an atom ('Atom')
 - n_mod: list of the vibrational mode frequencies [cm-1]
 - n_deg: list of the vibrational mode degeneracies
-- gn_list_elec: list of electric degeneracies
-- En: list of electric Energies [cm-1]
+- gn_list_elec: list of electron levels degeneracies
+- En: list of electron level Energies [cm-1]
 - spin_list: list of the nuclear spins
 - A: other eventual rotational constant [cm-1]
 - C: other eventual rotational constant [cm-1]
