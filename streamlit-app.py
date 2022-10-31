@@ -62,6 +62,13 @@ if __name__ == "__main__":
     load = st.button('Add Molecule')
 
     st.write('''
+    ### Added_Molecules:
+    ''')
+    mol_list = [mol for mol in data if mol != 'U0']
+    for mol in mol_list:
+        st.write(f'\t{mol}, stoichiometry: {data[mol]["s_c"]}')
+
+    st.write('''
     ## Compute:
     ''')
     to_compute = st.selectbox('Select the parameters to calculate', ('Partition Function',
@@ -85,21 +92,13 @@ if __name__ == "__main__":
         save()
 
     st.write('''
-    ### Added_Molecules:
-    ''')
-    mol_list = [mol for mol in data if mol != 'U0']
-    for mol in mol_list:
-        st.write(f'\t{mol}, stoichiometry: {data[mol]["s_c"]}')
-
-    st.write('''
     ## Results:
     ''')
 
     try:
         df = prepare_df()
-        st.dataframe(df)
         print(df.columns[df.columns.duplicated()])
-
+        st.dataframe(df)
     except Exception as e:
         st.write('Not able to print the DataFrame')
         print(e)
