@@ -779,4 +779,6 @@ def prepare_df():
                 print(f"Data not found for {compound} at temperature {T}")
         if T in results:
             df = pd.concat([df, pd.DataFrame(results[T], index=['\u0394'], columns=col)])
+    # remove duplicated columns:
+    df = df.loc[:, ~df.columns.duplicated()].copy()
     return df
