@@ -1,11 +1,11 @@
-
 import streamlit as st
 from stat_thermo import *
+
 
 def add_molecule(sign):
     name = st.text_input('Name/Formula', help='Name of the molecule')
     s_c = st.text_input('stoichiometric number', help='Reaction stoichiometric number (positive value)')
-    if s_c: s_c = float( s_c ) * sign
+    if s_c: s_c = float(s_c) * sign
     P = st.text_input('P: Pressure [bar]')
     if P: P = float(P)
     m = st.text_input('m: molecular mass [dalton]')
@@ -17,8 +17,9 @@ def add_molecule(sign):
     C = st.text_input('C: other rotational constant [cm-1]', 0)
     if C: C = float(C)
     linearity_dict = {'Linear': True, 'Non-linear': False, 'an Atom': 'Atom'}
-    linear = linearity_dict[ st.selectbox('The molecule is', ('Linear', 'Non-linear', 'an Atom')) ]
-    o = st.text_input('o: symmetry number', help='The symmetry number a of a molecule is the order of the finite rotational sub-group of the point group of the molecule')
+    linear = linearity_dict[st.selectbox('The molecule is', ('Linear', 'Non-linear', 'an Atom'))]
+    o = st.text_input('o: symmetry number',
+                      help='The symmetry number a of a molecule is the order of the finite rotational sub-group of the point group of the molecule')
     if o: o = float(o)
     n_mod_raw = st.text_input('List of the vibrational mode frequencies [cm-1] separated by a comma')
     if n_mod_raw:
@@ -47,8 +48,6 @@ def add_molecule(sign):
     return False
 
 
-
-
 if __name__ == "__main__":
     st.write('''
     # Statistical Thermodynamics Reactor!
@@ -75,7 +74,7 @@ if __name__ == "__main__":
     s_c = st.text_input('stoichiometric number', help='Reaction stoichiometric number (positive value)')
     sign_dict = {'Reactant': -1, 'Product': +1}
     sign = sign_dict[st.selectbox('The molecule is', ('Reactant', 'Product'))]
-    if s_c: s_c = float( s_c ) * sign
+    if s_c: s_c = float(s_c) * sign
     P = st.text_input('P: Pressure [bar]', '')
     if P: P = float(P)
     m = st.text_input('m: molecular mass [dalton]', '')
@@ -87,8 +86,9 @@ if __name__ == "__main__":
     C = st.text_input('C: other rotational constant [cm-1]', 0)
     if C: C = float(C)
     linearity_dict = {'Linear': True, 'Non-linear': False, 'an Atom': 'Atom'}
-    linear = linearity_dict[ st.selectbox('The molecule is', ('Linear', 'Non-linear', 'an Atom')) ]
-    o = st.text_input('o: symmetry number', help='The symmetry number a of a molecule is the order of the finite rotational sub-group of the point group of the molecule')
+    linear = linearity_dict[st.selectbox('The molecule is', ('Linear', 'Non-linear', 'an Atom'))]
+    o = st.text_input('o: symmetry number',
+                      help='The symmetry number a of a molecule is the order of the finite rotational sub-group of the point group of the molecule')
     if o: o = float(o)
     n_mod_raw = st.text_input('List of the vibrational mode frequencies [cm-1] separated by a comma')
     if n_mod_raw:
@@ -105,11 +105,33 @@ if __name__ == "__main__":
     spin_list_raw = st.text_input('List of nuclear spins separated by a comma')
     if spin_list_raw:
         spin_list = [float(i) for i in spin_list_raw.split(',')]
+    load = st.button('Add Molecule')
 
+    to_compute = st.selectbox('###Compute:', ('Partition Function',
+                                              'Internal Energy',
+                                              'Entropy',
+                                              'Gibbs Free Energy and Reaction Constant'))
+    compute = st.button('Compute')
+    if compute:
+        mol_list = [mol for mol in data if mol != 'U0']
+        if to_compute == 'Partition Function':
+            for mol in mol_list:
+                Q_fast(mol, T)
+        elif to_compute == 'Internal Energy':
+            for mol in mol_list:
+                U_fast(mol, T)
+        elif to_compute == 'Entropy':
+            for mol in mol_list:
+                S_fast(mol, T)
+        elif to_compute == 'Gibbs Free Energy and Reaction Constant':
+            k_fast(T)
+
+    st.write('''
+    ## Results:
+    ''')
     if len(data) >= 2:
         st.dataframe(prepare_df())
 
-    load = st.button('Add Molecule')
     if not load:
         st.stop()
     else:
@@ -117,12 +139,10 @@ if __name__ == "__main__":
         data[name]["s_c"] = s_c
         data[name]["param"] = [P, m, B, o, linear, n_mod, n_deg, gn_list_elec, En, spin_list, A, C]
 
-    del_mol = st.selectbox('Compute:', '')
-
     mol_list = [mol for mol in data if mol != 'U0']
     del_mol = st.selectbox('Delete the molecule:', mol_list)
     delete = st.button('delete')
     if not delete:
         st.stop()
     else:
-        del(data[del_mol])
+        del (data[del_mol])
