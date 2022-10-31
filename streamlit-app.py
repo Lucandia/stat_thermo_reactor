@@ -42,7 +42,6 @@ def add_molecule(sign):
         data[name] = dict()
         data[name]["s_c"] = s_c
         data[name]["param"] = [P, m, B, o, linear, n_mod, n_deg, gn_list_elec, En, spin_list, A, C]
-        return
 
 
 
