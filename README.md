@@ -18,14 +18,14 @@ added to the pythonpath
 - U0_value: Internal Energy of the reaction at 0 kelvin
 - s_c: stoichiometric number, positive for products and negative for reactants
 - P: pressure [bar]
-- m: molecular weight [dalton]
+- m: molecular mass [dalton]
 - B: rotational constant [cm-1]
 - o: symmetry number of the compound (The symmetry number a of a molecule is the order of the finite rotational sub-group of the point group of the molecule.)
 - linear: the molecule is linear ('True'), not linear ('False'), or an atom ('Atom')
-- n_mod: list of the vibrational mode frequencies
+- n_mod: list of the vibrational mode frequencies [cm-1]
 - n_deg: list of the vibrational mode degeneracies
-- gn_list_elec: list of electric degeneracies
-- En: list of electric Energies [cm-1]
+- gn_list_elec: list of electron levels degeneracies
+- En: list of electron level Energies [cm-1]
 - spin_list: list of the nuclear spins
 - A: other eventual rotational constant [cm-1]
 - C: other eventual rotational constant [cm-1]
