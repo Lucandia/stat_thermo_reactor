@@ -85,8 +85,18 @@ if __name__ == "__main__":
         save()
 
     st.write('''
+    ### Added_Molecules:
+    ''')
+    mol_list = [mol for mol in data if mol != 'U0']
+    for mol in mol_list:
+        st.write(f'\t{mol}, stoichiometry: {data[mol]["s_c"]}')
+
+    st.write('''
     ## Results:
     ''')
+
+    if len(data)>1:
+        st.dataframe(prepare_df())
     try:
         st.dataframe(prepare_df())
     except:
