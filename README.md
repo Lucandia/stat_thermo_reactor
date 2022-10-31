@@ -8,8 +8,7 @@ A python script to calculate reaction data with Statistical Thermodynamics (ΔG,
 
 ### Remarks:
 - The script works for one reaction only. 
-- The input parameters are stored in a dictionary called 'data'. The reaction state functions are stored in a 
-- dictionary called 'results'.
+- The input parameters are stored in a dictionary called 'data'. The reaction state functions are stored in a dictionary called 'results'.
 - The script is meant to be used from python interpreter. Make sure the script is located in the working directory or
 added to the pythonpath
 - To convert cm-1 to Joule: multiply for hc
