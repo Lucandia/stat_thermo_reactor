@@ -18,7 +18,7 @@ added to the pythonpath
 - U0_value: Internal Energy of the reaction at 0 kelvin
 - s_c: stoichiometric number, positive for products and negative for reactants
 - P: pressure [bar]
-- m: molecular weight [dalton]
+- m: molecular mass [dalton]
 - B: rotational constant [cm-1]
 - o: symmetry number of the compound (The symmetry number a of a molecule is the order of the finite rotational sub-group of the point group of the molecule.)
 - linear: the molecule is linear ('True'), not linear ('False'), or an atom ('Atom')
