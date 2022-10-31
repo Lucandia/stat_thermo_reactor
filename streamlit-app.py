@@ -94,10 +94,12 @@ if __name__ == "__main__":
     st.write('''
     ## Results:
     ''')
-    df = prepare_df()
-    print(df.columns[df.columns.duplicated()])
+
     try:
-        st.dataframe()
+        df = prepare_df()
+        st.dataframe(df)
+        print(df.columns[df.columns.duplicated()])
+
     except Exception as e:
         st.write('Not able to print the DataFrame')
         print(e)
