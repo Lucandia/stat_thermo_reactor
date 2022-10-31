@@ -95,12 +95,11 @@ if __name__ == "__main__":
     ## Results:
     ''')
 
-    if len(data)>1:
-        st.dataframe(prepare_df())
     try:
         st.dataframe(prepare_df())
-    except:
+    except Exception as e:
         st.write('Not able to print the DataFrame')
+        print(e)
 
     if load:
         data[name] = dict()
