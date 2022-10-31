@@ -60,7 +60,11 @@ if __name__ == "__main__":
     ''')
 
     dU0 = st.text_input('ΔU0 [Joule]', help='ΔU at 0 Kelvin')
+    if dU0:
+        data["U0"] = float(dU0)
     T = st.text_input('Temperature [Kelvin]')
+    if T:
+        T = float(T)
 
     st.write('''
     ## Molecules:
@@ -110,6 +114,14 @@ if __name__ == "__main__":
         data[name]["s_c"] = s_c
         data[name]["param"] = [P, m, B, o, linear, n_mod, n_deg, gn_list_elec, En, spin_list, A, C]
 
+
+
     st.json(data)
 
-
+    mol_list = [mol for mol in data if mol != 'U0']
+    del_mol = st.selectbox('Delete the molecule:', mol_list)
+    delete = st.button('delete')
+    if not delete:
+        st.stop()
+    else:
+        del(data[del_mol])
