@@ -105,7 +105,7 @@ if __name__ == "__main__":
     if spin_list_raw:
         spin_list = [float(i) for i in spin_list_raw.split(',')]
 
-    st.json(data)
+    st.json(prepare_df())
 
     load = st.button('Add Molecule')
     if not load:
