@@ -124,4 +124,4 @@ if __name__ == "__main__":
     if not delete:
         st.stop()
     else:
-        del(data[del_mol])
+        data.pop(del_mol)
