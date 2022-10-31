@@ -108,12 +108,13 @@ if __name__ == "__main__":
         spin_list = [float(i) for i in spin_list_raw.split(',')]
     load = st.button('Add Molecule')
 
-    to_compute = st.selectbox('''
-    ### Compute:
-    ''', ('Partition Function',
-          'Internal Energy',
-          'Entropy',
-          'Gibbs Free Energy and Reaction Constant'))
+    st.write('''
+    ## Compute:
+    ''')
+    to_compute = st.selectbox('Select the parameters to calculate', ('Partition Function',
+                                                                     'Internal Energy',
+                                                                     'Entropy',
+                                                                     'Gibbs Free Energy and Reaction Constant'))
     compute = st.button('Compute')
     if compute:
         mol_list = [mol for mol in data if mol != 'U0']
@@ -145,9 +146,7 @@ if __name__ == "__main__":
         data[name]["s_c"] = int(s_c)
         data[name]["param"] = [P, m, B, o, linear, n_mod, n_deg, gn_list_elec, En, spin_list, A, C]
 
-    save_as = st.selectbox('''
-    ### Save Results as:
-    ''', ('csv', 'xlsx'))
+    save_as = st.selectbox('Save results as', ('csv', 'xlsx'))
     filename = 'stat_thermo_results.' + save_as
     if filename in os.listdir():
         with open(filename, "rb") as file:
