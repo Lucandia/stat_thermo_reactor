@@ -60,6 +60,7 @@ if __name__ == "__main__":
     ''')
 
     dU0 = st.text_input('ΔU0 [Joule]', help='ΔU at 0 Kelvin')
+    data["U0"] = None
     if dU0:
         data["U0"] = float(dU0)
     T = st.text_input('Temperature [Kelvin]')
@@ -105,8 +106,8 @@ if __name__ == "__main__":
     if spin_list_raw:
         spin_list = [float(i) for i in spin_list_raw.split(',')]
 
-    if len(data)>=2:
-        st.json(prepare_df())
+    if len(data) >= 2:
+        st.dataframe(prepare_df())
 
     load = st.button('Add Molecule')
     if not load:
@@ -116,7 +117,7 @@ if __name__ == "__main__":
         data[name]["s_c"] = s_c
         data[name]["param"] = [P, m, B, o, linear, n_mod, n_deg, gn_list_elec, En, spin_list, A, C]
 
-
+    del_mol = st.selectbox('Compute:', '')
 
     mol_list = [mol for mol in data if mol != 'U0']
     del_mol = st.selectbox('Delete the molecule:', mol_list)
