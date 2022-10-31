@@ -36,7 +36,7 @@ def add_molecule(sign):
     if spin_list_raw:
         spin_list = [float(i) for i in spin_list_raw.split(',')]
     load = st.button('submit molecule')
-    if not load:
+    while not load:
         st.stop()
     else:
         data[name] = dict()
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     st.write('''
     ## Reactants:
     ''')
-    if st.button('Add'):
+    if st.button('Add reactant'):
         add_molecule(-1)
 
     st.json(data)
