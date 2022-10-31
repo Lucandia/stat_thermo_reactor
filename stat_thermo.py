@@ -740,6 +740,24 @@ def save(filename='stat_thermo_results'):
     	None
 
     """
+    df = prepare_df()
+    df.to_csv(filename + '.csv')
+    df.to_excel(filename + '.xlsx')
+    return 'File saved as ' + filename + ".csv and" + filename + ".xlsx"
+
+
+def prepare_df():
+    """>  This function creates a pandas dataframe with all the values calculated
+
+    Parameters
+    ----------
+        None
+
+    Returns
+    -------
+    	None
+
+    """
     df = pd.DataFrame()
     comp = list(data.keys())
     comp.remove('U0')
@@ -760,8 +778,4 @@ def save(filename='stat_thermo_results'):
                 print(f"Data not found for {compound} at temperature {T}")
         if T in results:
             df = pd.concat([df, pd.DataFrame(results[T], index=['\u0394'], columns=col)])
-    df = df.round(6)
-    df.to_csv(filename + '.csv')
-    df.to_excel(filename + '.xlsx')
-    return 'File saved as ' + filename + ".csv and" + filename + ".xlsx"
-
+    return df
