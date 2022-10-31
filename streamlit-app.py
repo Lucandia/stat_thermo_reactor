@@ -59,7 +59,7 @@ if __name__ == "__main__":
     st.write('''
     ## Reactants:
     ''')
-    st.button('Add', on_click=add_molecule(), args=(-1))
+    st.button('Add', on_click=add_molecule(-1))
 
     st.json(data)
 
