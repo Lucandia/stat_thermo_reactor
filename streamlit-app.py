@@ -6,7 +6,7 @@ def add_molecule(sign):
     name = st.text_input('Name/Formula', help='Name of the molecule')
     s_c = st.text_input('stoichiometric number', help='Reaction stoichiometric number (positive value)')
     if s_c: s_c = float( s_c ) * sign
-    P = float(st.text_input('P: Pressure [bar]'))
+    P = st.text_input('P: Pressure [bar]')
     if P: P = float(P)
     m = st.text_input('m: molecular mass [dalton]')
     if m: m = float(m)
