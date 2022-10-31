@@ -766,6 +766,7 @@ def prepare_df():
     T_list.remove('param')
     if not T_list:
         print("Data not found")
+        return
     col = ['T', 's_c'] + list(data[comp[0]][T_list[0]].keys()) + ['\u0394U', '\u0394S', '\u0394H', 'k',
                                                                   '\u0394G_thermo', '\u0394G_k', ]
     for T in T_list:

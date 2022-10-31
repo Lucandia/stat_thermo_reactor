@@ -75,11 +75,11 @@ if __name__ == "__main__":
     sign_dict = {'Reactant': -1, 'Product': +1}
     sign = sign_dict[st.selectbox('The molecule is', ('Reactant', 'Product'))]
     if s_c: s_c = float( s_c ) * sign
-    P = st.text_input('P: Pressure [bar]')
+    P = st.text_input('P: Pressure [bar]', '')
     if P: P = float(P)
-    m = st.text_input('m: molecular mass [dalton]')
+    m = st.text_input('m: molecular mass [dalton]', '')
     if m: m = float(m)
-    B = st.text_input('B: rotational constant [cm-1]')
+    B = st.text_input('B: rotational constant [cm-1]', '')
     if B: B = float(B)
     A = st.text_input('A: other rotational constant [cm-1]', 0)
     if A: A = float(A)
@@ -105,7 +105,8 @@ if __name__ == "__main__":
     if spin_list_raw:
         spin_list = [float(i) for i in spin_list_raw.split(',')]
 
-    st.json(prepare_df())
+    if len(data)>=2:
+        st.json(prepare_df())
 
     load = st.button('Add Molecule')
     if not load:
