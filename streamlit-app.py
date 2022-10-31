@@ -105,6 +105,7 @@ if __name__ == "__main__":
     if spin_list_raw:
         spin_list = [float(i) for i in spin_list_raw.split(',')]
 
+    st.json(data)
 
     load = st.button('Add Molecule')
     if not load:
@@ -116,12 +117,10 @@ if __name__ == "__main__":
 
 
 
-    st.json(data)
-
     mol_list = [mol for mol in data if mol != 'U0']
     del_mol = st.selectbox('Delete the molecule:', mol_list)
     delete = st.button('delete')
     if not delete:
         st.stop()
     else:
-        data.pop(del_mol)
+        del(data[del_mol])
