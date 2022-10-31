@@ -21,6 +21,7 @@ def add_molecule(sign):
     o = st.text_input('o: symmetry number', help='The symmetry number a of a molecule is the order of the finite rotational sub-group of the point group of the molecule')
     if o: o = float(o)
     n_mod_raw = st.text_input('List of the vibrational mode frequencies [cm-1] separated by a comma').split(',')
+    st.write(f'{n_mod_raw}  {type(n_mod_raw)} {bool(n_mod_raw)}')
     if n_mod_raw:
         n_mod = [float(i) for i in n_mod_raw]
     n_deg_raw = st.text_input('List of the vibrational mode degeneracies separated by a comma').split(',')
