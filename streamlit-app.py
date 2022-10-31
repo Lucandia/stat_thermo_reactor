@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 from stat_thermo import *
 
 
@@ -107,10 +108,10 @@ if __name__ == "__main__":
         spin_list = [float(i) for i in spin_list_raw.split(',')]
     load = st.button('Add Molecule')
 
-    to_compute = st.selectbox('###Compute:', ('Partition Function',
-                                              'Internal Energy',
-                                              'Entropy',
-                                              'Gibbs Free Energy and Reaction Constant'))
+    to_compute = st.selectbox('### Compute:', ('Partition Function',
+                                               'Internal Energy',
+                                               'Entropy',
+                                               'Gibbs Free Energy and Reaction Constant'))
     compute = st.button('Compute')
     if compute:
         mol_list = [mol for mol in data if mol != 'U0']
@@ -125,19 +126,30 @@ if __name__ == "__main__":
                 S_fast(mol, T)
         elif to_compute == 'Gibbs Free Energy and Reaction Constant':
             k_fast(T)
+        save()
 
     st.write('''
     ## Results:
     ''')
-    if len(data) >= 2:
+    try:
         st.dataframe(prepare_df())
+    except:
+        st.write('Not able to print the DataFrame')
 
     if not load:
         st.stop()
     else:
         data[name] = dict()
-        data[name]["s_c"] = s_c
+        data[name]["s_c"] = int(s_c)
         data[name]["param"] = [P, m, B, o, linear, n_mod, n_deg, gn_list_elec, En, spin_list, A, C]
+
+    save_as = st.selectbox('### Save Results as:', ('csv', 'xlsx'))
+    filename = 'stat_thermo_results.' + save_as
+    with open(os.getcwd() + os.sep + filename, "rb") as file:
+        btn = st.download_button(label="Download Results Table",
+                                 data=file,
+                                 file_name=filename,
+                                 mime="image/png")
 
     mol_list = [mol for mol in data if mol != 'U0']
     del_mol = st.selectbox('Delete the molecule:', mol_list)
