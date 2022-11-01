@@ -87,9 +87,7 @@ if __name__ == "__main__":
     st.write('''
     ## Results:
     ''')
-    if len(data)>2:
-        df = prepare_df()
-        print(df.columns[df.columns.duplicated()])
+
     try:
         df = prepare_df()
         st.dataframe(df)
@@ -110,7 +108,7 @@ if __name__ == "__main__":
     product_list = []
     for mol in mol_list:
         if data[mol]["s_c"] < 0:
-            react_list.append(f'{data[mol]["s_c"]} {mol}')
+            react_list.append(f'{-data[mol]["s_c"]} {mol}')
         else:
             product_list.append(f'{data[mol]["s_c"]} {mol}')
     st.write(f'''
