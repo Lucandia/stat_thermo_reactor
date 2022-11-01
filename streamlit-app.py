@@ -61,6 +61,11 @@ if __name__ == "__main__":
         spin_list = [float(i) for i in spin_list_raw.split(',')]
     load = st.button('Add Molecule')
 
+    if load:
+        data[name] = dict()
+        data[name]["s_c"] = int(s_c)
+        data[name]["param"] = [P, m, B, o, linear, n_mod, n_deg, gn_list_elec, En, spin_list, A, C]
+
     st.write('''
     #### Remove molecules:
     ''')
@@ -106,11 +111,6 @@ if __name__ == "__main__":
     except Exception as e:
         st.write('Not able to print the DataFrame')
         print(e)
-
-    if load:
-        data[name] = dict()
-        data[name]["s_c"] = int(s_c)
-        data[name]["param"] = [P, m, B, o, linear, n_mod, n_deg, gn_list_elec, En, spin_list, A, C]
 
     st.write('''
     ## Reaction:
