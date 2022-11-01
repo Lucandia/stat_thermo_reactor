@@ -21,7 +21,7 @@ if __name__ == "__main__":
         T = float(T)
 
     st.write('''
-    ## Molecules:
+    ## Add Molecules:
     ''')
 
     name = st.text_input('Name/Formula', help='Name of the molecule')
@@ -60,6 +60,19 @@ if __name__ == "__main__":
     if spin_list_raw:
         spin_list = [float(i) for i in spin_list_raw.split(',')]
     load = st.button('Add Molecule')
+
+    st.write('''
+    #### Remove molecules:
+    ''')
+    del_mol = st.selectbox('Select the molecule to remove', mol_list + ['All'])
+    delete = st.button('delete')
+    if not delete:
+        st.stop()
+    elif del_mol == 'All':
+        del(data)
+        data = dict()
+    else:
+        del(data[del_mol])
 
     st.write('''
     ## Compute:
@@ -125,15 +138,4 @@ if __name__ == "__main__":
                                      file_name=filename,
                                      mime="image/png")
 
-    st.write('''
-    #### Remove molecules:
-    ''')
-    del_mol = st.selectbox('Select the molecule to remove', mol_list + ['All'])
-    delete = st.button('delete')
-    if not delete:
-        st.stop()
-    elif del_mol == 'All':
-        del(data)
-        data = dict()
-    else:
-        del(data[del_mol])
+
