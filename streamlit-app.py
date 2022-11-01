@@ -74,7 +74,7 @@ if __name__ == "__main__":
     delete = st.button('delete')
     if delete and del_mol == 'All':
         for mol in mol_list:
-            del(data[del_mol])
+            del(data[mol])
     elif delete:
         del(data[del_mol])
 
