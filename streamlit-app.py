@@ -62,13 +62,6 @@ if __name__ == "__main__":
     load = st.button('Add Molecule')
 
     st.write('''
-    ### Added_Molecules:
-    ''')
-    mol_list = [mol for mol in data if mol != 'U0']
-    for mol in mol_list:
-        st.write(f'\t{mol}, stoichiometry: {data[mol]["s_c"]}')
-
-    st.write('''
     ## Compute:
     ''')
     to_compute = st.selectbox('Select the parameters to calculate', ('Partition Function',
@@ -109,6 +102,22 @@ if __name__ == "__main__":
         data[name]["s_c"] = int(s_c)
         data[name]["param"] = [P, m, B, o, linear, n_mod, n_deg, gn_list_elec, En, spin_list, A, C]
 
+    st.write('''
+    ## Reaction:
+    ''')
+    mol_list = [mol for mol in data if mol != 'U0']
+    react_list = []
+    product_list = []
+    for mol in mol_list:
+        if data[mol]["s_c"] < 0:
+            react_list.append(f'{data[mol]["s_c"]} {mol}')
+        else:
+            product_list.append(f'{data[mol]["s_c"]} {mol}')
+    st.write(f'''
+    #### {' + '.join(react_list)} ⇌	{' + '.join(product_list)}
+    ''')
+
+
     save_as = st.selectbox('Save results as', ('csv', 'xlsx'))
     filename = 'stat_thermo_results.' + save_as
     if filename in os.listdir():
@@ -118,10 +127,15 @@ if __name__ == "__main__":
                                      file_name=filename,
                                      mime="image/png")
 
-    mol_list = [mol for mol in data if mol != 'U0']
-    del_mol = st.selectbox('Delete the molecule:', mol_list)
+    st.write('''
+    #### Remove molecules:
+    ''')
+    del_mol = st.selectbox('Select the molecule to remove', mol_list + ['All'])
     delete = st.button('delete')
     if not delete:
         st.stop()
+    elif del_mol == 'All':
+        del(data)
+        data = dict()
     else:
-        del (data[del_mol])
+        del(data[del_mol])
