@@ -15,12 +15,12 @@ added to the pythonpath
 
   
 ### Required parameters summary:
-- U0_value: Internal Energy of the reaction at 0 kelvin
+- U0_value: Internal Energy of the reaction at 0 kelvin at standard pressure [Joule/mol]
 - s_c: stoichiometric number, positive for products and negative for reactants
 - P: pressure [bar]
 - m: molecular mass [dalton]
 - B: rotational constant [cm-1]
-- o: symmetry number of the compound (The symmetry number a of a molecule is the order of the finite rotational sub-group of the point group of the molecule.)
+- o: symmetry number of the compound (The symmetry number of a molecule is the order of the finite rotational sub-group of the point group of the molecule.)
 - linear: the molecule is linear ('True'), not linear ('False'), or an atom ('Atom')
 - n_mod: list of the vibrational mode frequencies [cm-1]
 - n_deg: list of the vibrational mode degeneracies
