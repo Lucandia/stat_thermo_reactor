@@ -79,6 +79,21 @@ if __name__ == "__main__":
         del(data[del_mol])
 
     st.write('''
+    ## Reaction:
+    ''')
+    mol_list = [mol for mol in data if mol != 'U0']
+    react_list = []
+    product_list = []
+    for mol in mol_list:
+        if data[mol]["s_c"] < 0:
+            react_list.append(f'{-data[mol]["s_c"]} {mol}')
+        else:
+            product_list.append(f'{data[mol]["s_c"]} {mol}')
+    st.write(f'''
+    #### {' + '.join(react_list)} ⇌	{' + '.join(product_list)}
+    ''')
+
+    st.write('''
     ## Compute:
     ''')
     to_compute = st.selectbox('Select the parameters to calculate', ('Partition Function',
@@ -111,22 +126,6 @@ if __name__ == "__main__":
     except Exception as e:
         st.write('Not able to print the DataFrame')
         print(e)
-
-    st.write('''
-    ## Reaction:
-    ''')
-    mol_list = [mol for mol in data if mol != 'U0']
-    react_list = []
-    product_list = []
-    for mol in mol_list:
-        if data[mol]["s_c"] < 0:
-            react_list.append(f'{-data[mol]["s_c"]} {mol}')
-        else:
-            product_list.append(f'{data[mol]["s_c"]} {mol}')
-    st.write(f'''
-    #### {' + '.join(react_list)} ⇌	{' + '.join(product_list)}
-    ''')
-
 
     save_as = st.selectbox('Save results as', ('csv', 'xlsx'))
     filename = 'stat_thermo_results.' + save_as

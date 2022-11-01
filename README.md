@@ -92,6 +92,9 @@ Start setting the parameters for each reactant and product. Do not change the ke
 - save(filename='stat_thermo_results')
 
 ## Example:
+Decomposition of formaldehyde  into carbon monoxide and dihydrogen:
+
+1 H2CO ⇌ 1 H2 + 1 CO
 ```
 # import the functions
 
