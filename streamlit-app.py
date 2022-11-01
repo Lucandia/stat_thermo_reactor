@@ -12,11 +12,11 @@ if __name__ == "__main__":
     For more options and information, check out the [GitHub repository](https://github.com/lmonari5/stat_thermo_reactor.git)
     ''')
 
-    dU0 = st.text_input('ΔU0 [Joule/mol]', help='ΔU at 0 Kelvin and standard pressure')
+    dU0 = st.text_input('Reaction ΔU at 0K [Joule/mol]', help='Internal Energy difference at 0 Kelvin and standard pressure')
     data["U0"] = None
     if dU0:
         data["U0"] = float(dU0)
-    T = st.text_input('Temperature [Kelvin]')
+    T = st.text_input('Reaction Temperature [Kelvin]')
     if T:
         T = float(T)
 
