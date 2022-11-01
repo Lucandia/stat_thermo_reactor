@@ -1,6 +1,11 @@
 # Statistical Thermodynamics Reactor
 A python script to calculate reaction data with Statistical Thermodynamics (ΔG, ΔS, ΔH, ΔU, reaction constant); from the lecture of Roberto Marquardt.
 
+## Try the Web App:
+
+Try the web app based on Streamlit: it's free, no need to install anything!
+
+[Stat-Therm-Reactor Web App](https://lmonari5-stat-thermo-reactor-streamlit-app-2c05u1.streamlitapp.com)
 
 ### Required package:
 - pandas
