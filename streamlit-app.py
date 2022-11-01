@@ -73,8 +73,8 @@ if __name__ == "__main__":
     del_mol = st.selectbox('Select the molecule to remove', mol_list + ['All'])
     delete = st.button('delete')
     if delete and del_mol == 'All':
-        del(data)
-        data = dict()
+        for mol in mol_list:
+            del(data[del_mol])
     elif delete:
         del(data[del_mol])
 
