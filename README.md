@@ -45,7 +45,6 @@ Import the functions: \
 Initialize a dictionary with the value of the Internal Energy at 0 Kelvin (`U0_value`), by typing
 
 ```
-data = dict()
 data["U0"]= U0_value
 ``` 
 
