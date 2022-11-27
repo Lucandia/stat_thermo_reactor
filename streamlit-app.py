@@ -23,7 +23,7 @@ if __name__ == "__main__":
     st.write('''
     ## Add Molecules:
     ''')
-    with st.form("add_molecules", , clear_on_submit=True):
+    with st.form("add_molecules", clear_on_submit=True):
         name = st.text_input('Name/Formula', help='Name of the molecule')
         s_c = st.text_input('stoichiometric number', help='Reaction stoichiometric number (positive value)')
         sign_dict = {'Reactant': -1, 'Product': +1}
