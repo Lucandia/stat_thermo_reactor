@@ -5,7 +5,7 @@ A python script to calculate reaction data with Statistical Thermodynamics (ΔG,
 
 Try the web app based on Streamlit: it's free, no need to install anything!
 
-[Stat-Therm-Reactor Web App](https://lmonari5-stat-thermo-reactor-streamlit-app-2c05u1.streamlitapp.com)
+[Stat-Therm-Reactor Web App](https://stat-thermo-reactor.streamlitapp.com)
 
 ### Required package:
 - pandas
